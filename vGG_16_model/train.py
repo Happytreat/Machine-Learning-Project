@@ -48,7 +48,7 @@ le = pickle.loads(open(config.LE_PATH, "rb").read())
 
 # train the model
 print("[INFO] training model...")
-model = LogisticRegression(solver="lbfgs", multi_class="auto")
+model = LogisticRegression(solver="lbfgs", multi_class="auto", max_iter=1000)
 model.fit(trainX, trainY)
 
 # evaluate the model
