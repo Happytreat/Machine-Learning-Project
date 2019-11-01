@@ -14,7 +14,7 @@ pip3 install -r requirements.txt
 
 # Split images into test and train sets (2:8 ratio)
 python3 split_test_train.py
-split_folders input --ratio .8 0 .2 --output data
+split_folders input --ratio .7 0.2 .1 --output data
 
 # Extract features using vGG16 model
 python3 compile.py

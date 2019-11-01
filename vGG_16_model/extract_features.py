@@ -1,7 +1,9 @@
+# USAGE
+# python extract_features.py
+
 # import the necessary packages
 from sklearn.preprocessing import LabelEncoder
-#from keras.applications import VGG16
-from vgg16 import VGG16
+from keras.applications import VGG16
 from keras.applications import imagenet_utils
 from keras.preprocessing.image import img_to_array
 from keras.preprocessing.image import load_img
@@ -18,17 +20,16 @@ model = VGG16(weights="imagenet", include_top=False)
 le = None
 
 # loop over the data splits
-for split in [config.TRAIN, config.TEST, config.VAL]:
+for split in (config.TRAIN, config.TEST, config.VAL):
 	# grab all image paths in the current split
 	print("[INFO] processing '{} split'...".format(split))
 	p = os.path.sep.join([config.BASE_PATH, split])
 	imagePaths = list(paths.list_images(p))
 
-	# # randomly shuffle the image paths and then extract the class
-	# labels from the file paths (labels is the artist)
+	# randomly shuffle the image paths and then extract the class
+	# labels from the file paths
 	random.shuffle(imagePaths)
 	labels = [p.split(os.path.sep)[-2] for p in imagePaths]
-
 
 	# if the label encoder is None, create it
 	if le is None:
@@ -55,7 +56,7 @@ for split in [config.TRAIN, config.TEST, config.VAL]:
 		for imagePath in batchPaths:
 			# load the input image using the Keras helper utility
 			# while ensuring the image is resized to 224x224 pixels
-			image = load_img(imagePath, target_size=(224, 224))
+			image = load_img(imagePath, target_size=(512, 512))
 			image = img_to_array(image)
 
 			# preprocess the image by (1) expanding the dimensions and

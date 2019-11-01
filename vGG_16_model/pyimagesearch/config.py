@@ -12,7 +12,7 @@ BASE_PATH = "data"
 # directories
 TRAIN = "train"
 TEST = "test"
-VAL = "val" # will not be using this
+VAL = "val"
 
 # initialize the list of class label names
 CLASSES = ['Vincent_van_Gogh', 'Edgar_Degas', 'Pablo_Picasso', 'Pierre-Auguste_Renoir', 'Albrecht_Dürer', 'Paul_Gauguin',

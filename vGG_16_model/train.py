@@ -3,7 +3,8 @@
 
 # import the necessary packages
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from pyimagesearch import config
 import numpy as np
 import pickle
@@ -47,7 +48,7 @@ print("[INFO] loading data...")
 le = pickle.loads(open(config.LE_PATH, "rb").read())
 
 # train the model
-print("[INFO] training model...")
+print("[INFO] training LR model...")
 model = LogisticRegression(solver="lbfgs", multi_class="auto", max_iter=1000)
 model.fit(trainX, trainY)
 
@@ -55,6 +56,30 @@ model.fit(trainX, trainY)
 print("[INFO] evaluating...")
 preds = model.predict(testX)
 print(classification_report(testY, preds, target_names=le.classes_))
+
+# overall accuracy
+print("Accuracy : {}\n".format(accuracy_score(testY, preds)))
+
+# by definition a confusion matrix C is such that C_{i, j} is equal to the number of observations 
+# known to be in group i but predicted to be in group j.
+print(confusion_matrix(testY, preds))
+
+# train the model
+print("[INFO] training L.SVM model...")
+model = LinearSVC(random_state=0, tol=1e-5)
+model.fit(trainX, trainY)
+
+# evaluate the model
+print("[INFO] evaluating...")
+preds = model.predict(testX)
+print(classification_report(testY, preds, target_names=le.classes_))
+
+# overall accuracy
+print("Accuracy : {}\n".format(accuracy_score(testY, preds)))
+
+# by definition a confusion matrix C is such that C_{i, j} is equal to the number of observations 
+# known to be in group i but predicted to be in group j.
+print(confusion_matrix(testY, preds))
 
 # serialize the model to disk
 print("[INFO] saving model...")
