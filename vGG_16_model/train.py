@@ -55,7 +55,7 @@ model.fit(trainX, trainY)
 # evaluate the model
 print("[INFO] evaluating...")
 preds = model.predict(testX)
-print(classification_report(testY, preds, target_names=le.classes_))
+print(classification_report(testY, preds, target_names=le.classes_, labels=np.unique(preds)))
 
 # overall accuracy
 print("Accuracy : {}\n".format(accuracy_score(testY, preds)))
@@ -72,7 +72,7 @@ model.fit(trainX, trainY)
 # evaluate the model
 print("[INFO] evaluating...")
 preds = model.predict(testX)
-print(classification_report(testY, preds, target_names=le.classes_))
+print(classification_report(testY, preds, target_names=le.classes_, labels=np.unique(preds)))
 
 # overall accuracy
 print("Accuracy : {}\n".format(accuracy_score(testY, preds)))

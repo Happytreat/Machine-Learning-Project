@@ -15,6 +15,7 @@ import os
 # load the VGG16 network and initialize the label encoder
 print("[INFO] loading network...")
 model = VGG16(weights="imagenet", include_top=False)
+model.summary()
 le = None
 
 # loop over the data splits

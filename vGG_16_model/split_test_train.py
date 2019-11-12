@@ -1,13 +1,16 @@
 import os
 import shutil
 from imutils import paths
+from pyimagesearch import config
 
-FROM_URL = 'resized/resized/'
+FROM_URL = 'images/'
 TO_URL = 'input/'
 
 # filter into 11 artists with >200 images 
-filtered = ['Vincent_van_Gogh', 'Edgar_Degas', 'Pablo_Picasso', 'Pierre-Auguste_Renoir', 'Albrecht_Dürer', 'Paul_Gauguin',
-            'Francisco_Goya', 'Rembrandt', 'Alfred_Sisley', 'Titian', 'Marc_Chagall']
+# filtered = ['Vincent_van_Gogh', 'Edgar_Degas', 'Pablo_Picasso', 'Pierre-Auguste_Renoir', 'Albrecht_Dürer', 'Paul_Gauguin',
+#             'Francisco_Goya', 'Rembrandt', 'Alfred_Sisley', 'Titian', 'Marc_Chagall']
+
+filtered = config.CLASSES
 
 # Convert images into split folder input 
 p = os.path.sep.join([FROM_URL])
